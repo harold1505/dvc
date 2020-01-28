@@ -104,7 +104,6 @@ class RemoteGDrive(RemoteBASE):
                 ),
             )
         )
-        self.corpora = "allDrives"
         self.remote_drive_id = None
 
     @gdrive_retry
@@ -137,7 +136,7 @@ class RemoteGDrive(RemoteBASE):
         self, file_id, to_file, progress_name, no_progress_bar
     ):
         param = {"id": file_id}
-        # drive.CreateFile creates only local GoogleDriveFile object
+        # it does not create a file on the remote
         gdrive_file = self.drive.CreateFile(param)
         bar_format = (
             "Donwloading {desc:{ncols_desc}.{ncols_desc}}... "
@@ -250,13 +249,13 @@ class RemoteGDrive(RemoteBASE):
 
             self._gdrive = GoogleDrive(gauth)
 
+            if self.bucket != "root" and self.bucket != "appDataFolder":
+                self.remote_drive_id = self.get_remote_drive_id(self.bucket)
+            self.corpora = "drive" if self.remote_drive_id else "default"
             self.remote_root_id = self.get_remote_id(
                 self.path_info, create=True
             )
-            self.remote_drive_id = self.get_remote_drive_id(
-                self.remote_root_id
-            )
-            self.corpora = "drive" if self.remote_drive_id else "default"
+
             self._cached_dirs, self._cached_ids = self.cache_root_dirs()
 
         return self._gdrive
@@ -300,7 +299,7 @@ class RemoteGDrive(RemoteBASE):
     @gdrive_retry
     def get_remote_drive_id(self, remote_id):
         param = {"id": remote_id}
-        # drive.CreateFile creates only local GoogleDriveFile object
+        # it does not create a file on the remote
         item = self.drive.CreateFile(param)
         item.FetchMetadata("driveId")
         return item.get("driveId", None)
