@@ -11,6 +11,7 @@ from dvc.remote.local import RemoteLOCAL
 from dvc.remote.oss import RemoteOSS
 from dvc.remote.s3 import RemoteS3
 from dvc.remote.ssh import RemoteSSH
+from dvc.remote.stratus import RemoteSTRATUS
 
 
 REMOTES = [
@@ -23,6 +24,7 @@ REMOTES = [
     RemoteS3,
     RemoteSSH,
     RemoteOSS,
+    RemoteSTRATUS
     # NOTE: RemoteLOCAL is the default
 ]
 

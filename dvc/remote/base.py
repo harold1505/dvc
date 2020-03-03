@@ -27,6 +27,7 @@ from dvc.state import StateNoop
 from dvc.utils import tmp_fname
 from dvc.utils.fs import move, makedirs
 from dvc.utils.http import open_url
+from dvc.scheme import Schemes
 
 logger = logging.getLogger(__name__)
 
@@ -152,6 +153,13 @@ class RemoteBASE(object):
 
         # NOTE: silently skipping remote, calling code should handle that
         parsed = urlparse(url)
+        if cls.scheme == Schemes.HTTPS and str(parsed.netloc).find('stratus') != -1:
+            return False
+        if cls.scheme == Schemes.STRATUS and str(parsed.netloc).find('stratus') != -1:
+            logger.debug(
+            "Stratus remote found"
+        )
+            return True
         return parsed.scheme == cls.scheme
 
     @property
