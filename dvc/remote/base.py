@@ -153,7 +153,6 @@ class RemoteBASE(object):
 
         # NOTE: silently skipping remote, calling code should handle that
         parsed = urlparse(url)
-        logger.debug("remote getting added")
         if cls.scheme == Schemes.HTTPS and str(parsed.netloc).find('stratus') != -1:
             return False
         if cls.scheme == Schemes.STRATUS and str(parsed.netloc).find('stratus') != -1:
