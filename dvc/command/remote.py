@@ -25,7 +25,6 @@ class CmdRemote(CmdConfig):
 
 class CmdRemoteAdd(CmdRemote):
     def run(self):
-        logger.info("remote getting added")
         if self.args.default:
             logger.info(
                 "Setting '{}' as a default remote.".format(self.args.name)
