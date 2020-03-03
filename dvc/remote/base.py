@@ -153,8 +153,7 @@ class RemoteBASE(object):
 
         # NOTE: silently skipping remote, calling code should handle that
         parsed = urlparse(url)
-        logger.info("url parsed")
-        logger.debug(parsed.netloc)
+        logger.info("url:"+parsed.geturl()+" netloc:"+parsed.netloc)
         return parsed.scheme == cls.scheme
 
     @property
