@@ -72,6 +72,7 @@ class RemoteHTTP(RemoteBASE):
                     pbar.update(len(chunk))
 
     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
+        logger.info("http remote push")
         with Tqdm(
             total=None if no_progress_bar else os.path.getsize(from_file),
             leave=False,
