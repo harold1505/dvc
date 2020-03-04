@@ -4,6 +4,7 @@ import logging
 
 from .https import RemoteHTTP
 from dvc.scheme import Schemes
+from dvc.exceptions import HTTPError
 
 
 
@@ -16,4 +17,4 @@ class RemoteSTRATUS(RemoteHTTP):
         logger.info("initialized successfully")
 
     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
-        logger.info("stratus upload method")
+        raise HTTPError(400, "stratus upload not implemented")
