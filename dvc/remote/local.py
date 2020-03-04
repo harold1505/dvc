@@ -361,6 +361,7 @@ class RemoteLOCAL(RemoteBASE):
         return len(plans[0])
 
     def push(self, named_cache, remote, jobs=None, show_checksums=False):
+        logger.info('flow detected')
         return self._process(
             named_cache,
             remote,
