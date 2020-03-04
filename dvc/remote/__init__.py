@@ -1,4 +1,5 @@
 import posixpath
+import logging
 from urllib.parse import urlparse
 
 from dvc.remote.azure import RemoteAZURE
@@ -12,6 +13,7 @@ from dvc.remote.oss import RemoteOSS
 from dvc.remote.s3 import RemoteS3
 from dvc.remote.ssh import RemoteSSH
 from dvc.remote.stratus import RemoteSTRATUS
+from dvc.scheme import Schemes
 
 
 REMOTES = [
@@ -23,15 +25,18 @@ REMOTES = [
     RemoteHTTPS,
     RemoteS3,
     RemoteSSH,
-    RemoteOSS,
-    RemoteSTRATUS
+    RemoteOSS
     # NOTE: RemoteLOCAL is the default
 ]
 
-
+logger = logging.getLogger(__name__)
 def _get(remote_conf):
     for remote in REMOTES:
         if remote.supported(remote_conf):
+            logger.info('supported remote:'+remote.scheme)
+            if remote.scheme == Schemes.HTTPS and remote_conf['url'].find('stratus.com') != -1:
+                logger.info('Returning stratus remote')
+                return RemoteSTRATUS
             return remote
     return RemoteLOCAL
 
