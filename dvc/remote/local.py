@@ -347,7 +347,7 @@ class RemoteLOCAL(RemoteBASE):
 
         if len(plans[0]) == 0:
             return 0            
-        if remote.upload is RemoteHTTP.upload:
+        if remote.upload == RemoteHTTP.upload:
             logger.info('true')
         logger.info('reached here scheme:'+remote.scheme)
         if jobs > 1:
