@@ -33,9 +33,6 @@ logger = logging.getLogger(__name__)
 def _get(remote_conf):
     for remote in REMOTES:
         if remote.supported(remote_conf):
-            if remote.scheme == Schemes.HTTPS and remote_conf['url'].find('https://stratus') != -1:
-                logger.info('Returning stratus remote')
-                return RemoteSTRATUS
             return remote
     return RemoteLOCAL
 
