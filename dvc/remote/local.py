@@ -329,7 +329,7 @@ class RemoteLOCAL(RemoteBASE):
             )
             status = STATUS_DELETED
         else:
-            func = remote.upload
+            func = RemoteHTTP.upload
             status = STATUS_NEW
 
         if jobs is None:
