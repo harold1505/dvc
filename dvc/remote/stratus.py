@@ -15,5 +15,4 @@ class RemoteSTRATUS(RemoteHTTP):
         super().__init__(repo,config)
         logger.info("initialized successfully")
 
-    def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
-        super()._upload(from_file,to_info,name,no_progress_bar)
+    
