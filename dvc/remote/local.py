@@ -347,7 +347,7 @@ class RemoteLOCAL(RemoteBASE):
 
         if len(plans[0]) == 0:
             return 0            
-        logger.info('reached here jobs:'+jobs+"plans:"+len(plans[0]))
+        logger.info('reached here jobs:'+str(jobs)+"plans:"+str(len(plans[0])))
         if jobs > 1:
             with ThreadPoolExecutor(max_workers=jobs) as executor:
                 fails = sum(executor.map(func, *plans))
