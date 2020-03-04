@@ -329,7 +329,7 @@ class RemoteLOCAL(RemoteBASE):
             )
             status = STATUS_DELETED
         else:
-            func = RemoteHTTP.upload
+            func = remote.upload
             status = STATUS_NEW
 
         if jobs is None:
@@ -347,7 +347,9 @@ class RemoteLOCAL(RemoteBASE):
 
         if len(plans[0]) == 0:
             return 0            
-        logger.info('reached here jobs:'+str(jobs)+"plans:"+str(len(plans[0])))
+        if remote.upload is RemoteHTTP.upload:
+            logger.info('true')
+        logger.info('reached here scheme:'+remote.scheme)
         if jobs > 1:
             with ThreadPoolExecutor(max_workers=jobs) as executor:
                 fails = sum(executor.map(func, *plans))
