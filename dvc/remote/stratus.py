@@ -2,7 +2,7 @@ import logging
 
 
 
-from .https import RemoteHTTP
+from .https import RemoteHTTPS
 from dvc.scheme import Schemes
 from dvc.exceptions import HTTPError
 
@@ -10,7 +10,7 @@ from dvc.exceptions import HTTPError
 
 logger = logging.getLogger(__name__)
 
-class RemoteSTRATUS(RemoteHTTP):
+class RemoteSTRATUS(RemoteHTTPS):
     scheme = Schemes.STRATUS
     def __init__(self, repo, config):
         super().__init__(repo,config)
