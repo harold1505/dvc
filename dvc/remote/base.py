@@ -27,7 +27,6 @@ from dvc.state import StateNoop
 from dvc.utils import tmp_fname
 from dvc.utils.fs import move, makedirs
 from dvc.utils.http import open_url
-from dvc.scheme import Schemes
 
 logger = logging.getLogger(__name__)
 

@@ -25,7 +25,7 @@ REMOTES = [
     RemoteHTTPS,
     RemoteS3,
     RemoteSSH,
-    RemoteOSS
+    RemoteOSS,
     # NOTE: RemoteLOCAL is the default
 ]
 
