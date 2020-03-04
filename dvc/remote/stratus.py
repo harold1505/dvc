@@ -4,7 +4,7 @@ from dvc.scheme import Schemes
 
 class RemoteSTRATUS(RemoteHTTPS):
     scheme = Schemes.STRATUS
-     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
+    def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
         logger.info("stratus remote push")
         with Tqdm(
             total=None if no_progress_bar else os.path.getsize(from_file),
