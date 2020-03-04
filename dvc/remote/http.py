@@ -159,7 +159,7 @@ class RemoteHTTP(RemoteBASE):
 
     def _request(self, method, url, **kwargs):
         import requests
-
+        logger.info('reached http request')
         kwargs.setdefault("allow_redirects", True)
         kwargs.setdefault("timeout", self.REQUEST_TIMEOUT)
 
