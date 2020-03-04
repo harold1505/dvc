@@ -7,6 +7,7 @@ from functools import partial
 
 from shortuuid import uuid
 
+from .http import RemoteHTTP
 from dvc.compat import fspath_py35
 from dvc.exceptions import DvcException, DownloadError, UploadError
 from dvc.path_info import PathInfo
@@ -333,9 +334,6 @@ class RemoteLOCAL(RemoteBASE):
 
         if jobs is None:
             jobs = remote.JOBS
-        
-        if func is None:
-            logger.info("no upload method found")
 
         status_info = self.status(
             named_cache,
@@ -349,7 +347,7 @@ class RemoteLOCAL(RemoteBASE):
 
         if len(plans[0]) == 0:
             return 0
-
+        logger.info('reached here')
         if jobs > 1:
             with ThreadPoolExecutor(max_workers=jobs) as executor:
                 fails = sum(executor.map(func, *plans))
