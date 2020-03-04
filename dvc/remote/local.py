@@ -333,6 +333,9 @@ class RemoteLOCAL(RemoteBASE):
 
         if jobs is None:
             jobs = remote.JOBS
+        
+        if func is None:
+            logger.info("no upload method found")
 
         status_info = self.status(
             named_cache,
