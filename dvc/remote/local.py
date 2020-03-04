@@ -353,6 +353,7 @@ class RemoteLOCAL(RemoteBASE):
                 fails = sum(executor.map(func, *plans))
         else:
             fails = sum(map(func, *plans))
+        logger.info('reached even here')
 
         if fails:
             if download:
