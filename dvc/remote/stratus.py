@@ -7,7 +7,7 @@ from funcy import cached_property, memoize, wrap_prop, wrap_with
 from .https import RemoteHTTPS
 from dvc.scheme import Schemes
 from dvc.exceptions import HTTPError
-from dvc.prompt import prompt
+import dvc.prompt as prompt
 
 
 
