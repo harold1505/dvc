@@ -347,7 +347,11 @@ class RemoteLOCAL(RemoteBASE):
 
         if len(plans[0]) == 0:
             return 0 
-            
+        print(remote.upload)
+        print(RemoteHTTP.upload)
+        if remote.upload is None:
+            print('no upload method found')
+        
         logger.info('reached here scheme:'+remote.scheme)
         logger.info('plans:\n')
         for i in plans:
