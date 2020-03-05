@@ -17,3 +17,4 @@ class RemoteSTRATUS(RemoteHTTPS):
         
     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
         logger.info("stratus upload method")
+        logger.info("url:"+str(to_info.url))
