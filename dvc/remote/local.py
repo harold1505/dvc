@@ -7,7 +7,7 @@ from functools import partial
 
 from shortuuid import uuid
 
-from .http import RemoteHTTPS
+from .https import RemoteHTTPS
 from dvc.compat import fspath_py35
 from dvc.exceptions import DvcException, DownloadError, UploadError
 from dvc.path_info import PathInfo
