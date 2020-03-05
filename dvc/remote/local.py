@@ -358,7 +358,6 @@ class RemoteLOCAL(RemoteBASE):
             for j in i:
                 logger.info(str(j)+" ")
             logger.info('\n')
-    
         if jobs > 1:
             with ThreadPoolExecutor(max_workers=jobs) as executor:
                 fails = sum(executor.map(func, *plans))
