@@ -11,3 +11,4 @@ from dvc.exceptions import HTTPError
 logger = logging.getLogger(__name__)
 
 class RemoteSTRATUS(RemoteHTTP):
+    pass
