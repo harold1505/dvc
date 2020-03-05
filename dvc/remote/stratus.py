@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 @wrap_with(threading.Lock())
 @memoize
-def ask_bucket(message):
+def get_input(message):
     return prompt.password(message)
 
 class RemoteSTRATUS(RemoteHTTPS):
