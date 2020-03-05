@@ -56,4 +56,4 @@ def password(statement):
     return getpass("")
 
 def ask(message):
-    _ask(message)
+    return _ask(message)
