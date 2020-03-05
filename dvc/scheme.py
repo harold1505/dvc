@@ -9,4 +9,3 @@ class Schemes:
     GDRIVE = "gdrive"
     LOCAL = "local"
     OSS = "oss"
-    STRATUS = "stratus"
