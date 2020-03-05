@@ -54,3 +54,6 @@ def password(statement):
     """
     logger.info("{statement}: ".format(statement=statement))
     return getpass("")
+
+def ask(message):
+    _ask(message)

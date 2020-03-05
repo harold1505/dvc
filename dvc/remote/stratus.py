@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 @wrap_with(threading.Lock())
 @memoize
 def get_input(message):
-    return prompt.password(message)
+    return prompt.ask(message)
 
 class RemoteSTRATUS(RemoteHTTPS):
 
