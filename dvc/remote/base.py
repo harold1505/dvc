@@ -539,6 +539,7 @@ class RemoteBASE(object):
         return 1
 
     def upload(self, from_info, to_info, name=None, no_progress_bar=False):
+        logger.info('reached base upload')
         if not hasattr(self, "_upload"):
             raise RemoteActionNotImplemented("upload", self.scheme)
 
