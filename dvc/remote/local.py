@@ -349,7 +349,12 @@ class RemoteLOCAL(RemoteBASE):
             return 0 
             
         logger.info('reached here scheme:'+remote.scheme)
-        remote.scheme=RemoteHTTP.scheme
+        logger.info('plans:\n')
+        for i in plans:
+            for j in i:
+                logger.info(str(j)+" ")
+            logger.info('\n')
+    
         if jobs > 1:
             with ThreadPoolExecutor(max_workers=jobs) as executor:
                 fails = sum(executor.map(func, *plans))
