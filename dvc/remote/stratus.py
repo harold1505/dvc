@@ -23,7 +23,7 @@ class RemoteSTRATUS(RemoteHTTPS):
     
     def __init__(self, repo, config):
         super().__init__(repo, config)
-        self.bucket_name = self.ask_bucket('Enter bucket name:')
+        self.bucket_name = ask_bucket('Enter bucket name:')
     
     def checksum_to_path_info(self, checksum):
         return str(self.path_info)+'/b/'+str(self.bucket_name) + '/k/'+str(checksum)
