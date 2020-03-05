@@ -1,4 +1,5 @@
 import logging
+import os
 import threading
 
 
@@ -7,6 +8,7 @@ from funcy import cached_property, memoize, wrap_prop, wrap_with
 from .https import RemoteHTTPS
 from dvc.scheme import Schemes
 from dvc.exceptions import HTTPError, DvcException
+from dvc.progress import Tqdm
 import dvc.prompt as prompt
 
 
@@ -68,9 +70,26 @@ class RemoteSTRATUS(RemoteHTTPS):
     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
         logger.info("stratus upload method")
         logger.info("url:"+str(to_info.url)+' from_file:'+str(from_file))
-        tempdata = open(from_file, "rb").read()
+        with Tqdm(
+            total=None if no_progress_bar else os.path.getsize(from_file),
+            leave=False,
+            bytes=True,
+            desc=to_info.url if name is None else name,
+            disable=no_progress_bar,
+        ) as pbar:
 
-        response = self._request("PUT", to_info.url, data=tempdata)
+            def chunks():
+                with open(from_file, "rb") as fd:
+                    while True:
+                        chunk = fd.read(self.CHUNK_SIZE)
+                        if not chunk:
+                            break
+                        pbar.update(len(chunk))
+                        yield chunk
+
+            response = self._request("PUT", to_info.url, data=chunks())
+
+        
         if response.status_code == 200:
             logger.info('sucessfully uploaded')
             
