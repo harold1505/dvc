@@ -346,10 +346,10 @@ class RemoteLOCAL(RemoteBASE):
         plans = self._get_plans(download, remote, status_info, status)
 
         if len(plans[0]) == 0:
-            return 0            
-        if remote.upload == RemoteHTTP.upload:
-            logger.info('true')
+            return 0 
+            
         logger.info('reached here scheme:'+remote.scheme)
+        remote.scheme=RemoteHTTP.scheme
         if jobs > 1:
             with ThreadPoolExecutor(max_workers=jobs) as executor:
                 fails = sum(executor.map(func, *plans))
