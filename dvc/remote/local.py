@@ -349,8 +349,7 @@ class RemoteLOCAL(RemoteBASE):
             return 0 
         print(remote.upload)
         print(RemoteHTTPS.upload)
-        if remote.upload is None:
-            print('no upload method found')
+        
         
         logger.info('reached here scheme:'+remote.scheme)
         logger.info('plans:\n')

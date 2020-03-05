@@ -23,10 +23,8 @@ class RemoteSTRATUS(RemoteHTTPS):
     
     def __init__(self, repo, config):
         super().__init__(repo, config)
-        self.bucket_name =get_input('Enter bucket name:')
+        self.bucket_name = get_input('Enter bucket name:')
     
-    def checksum_to_path_info(self, checksum):
-        return str(self.path_info)+'/b/'+str(self.bucket_name) + '/k/'+str(checksum)
 
     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
         logger.info("stratus upload method")
