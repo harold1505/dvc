@@ -7,7 +7,7 @@ from functools import partial
 
 from shortuuid import uuid
 
-from .http import RemoteHTTP
+from .http import RemoteHTTPS
 from dvc.compat import fspath_py35
 from dvc.exceptions import DvcException, DownloadError, UploadError
 from dvc.path_info import PathInfo
@@ -348,7 +348,7 @@ class RemoteLOCAL(RemoteBASE):
         if len(plans[0]) == 0:
             return 0 
         print(remote.upload)
-        print(RemoteHTTP.upload)
+        print(RemoteHTTPS.upload)
         if remote.upload is None:
             print('no upload method found')
         
