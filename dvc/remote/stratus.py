@@ -46,7 +46,6 @@ class RemoteSTRATUS(RemoteHTTPS):
             backoff_factor=self.SESSION_BACKOFF_FACTOR,
         )
 
-        session.mount("http://", HTTPAdapter(max_retries=retries))
         session.mount("https://", HTTPAdapter(max_retries=retries))
 
         return session
@@ -71,31 +70,14 @@ class RemoteSTRATUS(RemoteHTTPS):
     def _upload(self, from_file, to_info, name=None, no_progress_bar=False):
         logger.info("stratus upload method")
         logger.info("url:"+str(to_info.url)+' from_file:'+str(from_file))
-        with Tqdm(
-            total=None if no_progress_bar else os.path.getsize(from_file),
-            leave=False,
-            bytes=True,
-            desc=to_info.url if name is None else name,
-            disable=no_progress_bar,
-        ) as pbar:
-
-            def chunks():
-                with open(from_file, "rb") as fd:
-                    while True:
-                        chunk = fd.read(self.CHUNK_SIZE)
-                        if not chunk:
-                            break
-                        pbar.update(len(chunk))
-                        yield chunk
-
-            response = self._request("PUT", to_info.url, data=chunks())
-
         
-        if response.status_code == 200:
-            logger.info('sucessfully uploaded')
+        response = self._request("PUT", to_info.url, data=open(from_file, "rb").read())
+        _upload_response_handler(response)
             
 
-
+    def _upload_response_handler(self,response) :
+        if response.status_code == 200 :
+            logger.info("Successfully uploaded")
     
         
         
