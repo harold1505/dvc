@@ -29,6 +29,7 @@ class RemoteSTRATUS(RemoteHTTPS):
         self.headers = {'Authorization' : 'Zoho-oauthtoken ' + get_input("Enter OAuth:")}
     
     def checksum_to_path_info(self, checksum):
+        self.headers['Content-MD5'] = checksum
         return self.path_info / 'b' / self.bucket_name / 'k' / checksum
 
     @wrap_prop(threading.Lock())
