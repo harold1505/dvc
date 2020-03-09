@@ -72,10 +72,10 @@ class RemoteSTRATUS(RemoteHTTPS):
         logger.info("url:"+str(to_info.url)+' from_file:'+str(from_file))
         
         response = self._request("PUT", to_info.url, data=open(from_file, "rb").read())
-        _upload_response_handler(response)
+        self._upload_response_handler(response)
             
 
-    def _upload_response_handler(self,response) :
+    def _upload_response_handler(self,response):
         if response.status_code == 200 :
             logger.info("Successfully uploaded")
     
