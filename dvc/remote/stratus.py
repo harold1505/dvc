@@ -76,8 +76,7 @@ class RemoteSTRATUS(RemoteHTTPS):
             
 
     def _upload_response_handler(self,response):
-        if response.status_code == 200 :
-            logger.info("Successfully uploaded")
+        logger.info("'{} {}'".format(code, reason))
     
         
         
